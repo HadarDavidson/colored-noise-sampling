@@ -13,7 +13,7 @@
 
 ## Overview
 
-Diffusion models generate images with a pronounced **spectral bias**: low-frequency global structure is resolved early in the sampling trajectory, while high-frequency detail emerges only at the very end. Standard SDE solvers ignore this dynamic entirely — they inject uniform white noise at every step, wasting the finite stochastic energy budget on frequency bands that are already structurally resolved.
+Diffusion models generate images with a **spectral bias**: low-frequency global structure is resolved early in the sampling trajectory, while high-frequency detail emerges only at the very end. Standard SDE solvers ignore this dynamic entirely — they inject uniform white noise at every step, wasting the finite stochastic energy budget on frequency bands that are already structurally resolved.
 
 **CNS** reconsiders SDE inference as a *targeted energy transfer*. At each step, it measures how "built" each frequency band is via a precomputed progress index γ(f, t) ∈ [0, 1], and dynamically routes injected noise energy toward the bands with the largest remaining structural deficit. A strict global variance-conservation constraint (mean β² = 1) ensures the modified SDE still converges to the target data distribution.
 
