@@ -1,7 +1,7 @@
 # Colored Noise Diffusion Sampling (CNS)
 ### *A plug-and-play SDE sampler that actively exploits the spectral bias of diffusion models*
 
-**[Paper](https://arxiv.org/abs/PLACEHOLDER) | [Project Page](https://hadardavidson.github.io/CNS)
+**[Paper](https://arxiv.org/abs/PLACEHOLDER) | [Project Page](https://hadardavidson.github.io/CNS)**
 
 > **Colored Noise Diffusion Sampling**<br>
 > [Hadar Davidson](https://hadardavidson.github.io), [Noam Issachar](https://scholar.google.com/citations?user=Lh0grhUAAAAJ), [Sagie Benaim](https://sagiebenaim.github.io)<br>
