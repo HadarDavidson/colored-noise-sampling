@@ -1,7 +1,7 @@
 # Colored Noise Diffusion Sampling (CNS)
 ### *A plug-and-play SDE sampler that actively exploits the spectral bias of diffusion models*
 
-**[Paper](https://arxiv.org/abs/PLACEHOLDER) | [Project Page](https://hadardavidson.github.io/CNS) | [Code](https://github.com/hadardavidson/colored-noise-sampling)**
+**[Paper](https://arxiv.org/abs/PLACEHOLDER) | [Project Page](https://hadardavidson.github.io/CNS)
 
 > **Colored Noise Diffusion Sampling**<br>
 > [Hadar Davidson](https://hadardavidson.github.io), [Noam Issachar](https://scholar.google.com/citations?user=Lh0grhUAAAAJ), [Sagie Benaim](https://sagiebenaim.github.io)<br>
@@ -18,29 +18,6 @@ Diffusion models generate images with a **spectral bias**: low-frequency global 
 **CNS** reconsiders SDE inference as a *targeted energy transfer*. At each step, it measures how "built" each frequency band is via a precomputed progress index γ(f, t) ∈ [0, 1], and dynamically routes injected noise energy toward the bands with the largest remaining structural deficit. A strict global variance-conservation constraint (mean β² = 1) ensures the modified SDE still converges to the target data distribution.
 
 The result is a strictly plug-and-play sampler substitution — same model, same number of steps, only the noise injection changes.
-
----
-
-## Results
-
-### Unguided ImageNet-256
-
-![Unguided results table](visuals/table_unguided.png)
-
-| Model     | Sampler    | FID ↓ | sFID ↓ | IS ↑   |
-|-----------|------------|-------|--------|--------|
-| SiT-XL/2  | ODE        | 14.39 | 10.54  | 99.32  |
-| SiT-XL/2  | SDE        | 8.26  | 6.32   | 131.65 |
-| SiT-XL/2  | **CNS (Ours)** | **6.27** | **4.73** | **147.33** |
-
-### Guided ImageNet-256 (CFG)
-
-![Guided results table](visuals/results_guided.png)
-
-| Model     | Sampler    | CFG  | FID ↓ | sFID ↓ |
-|-----------|------------|------|-------|--------|
-| SiT-XL/2  | SDE        | 1.5  | 2.06  | 4.49   |
-| SiT-XL/2  | **CNS (Ours)** | 1.5  | **1.98** | **4.46** |
 
 ---
 
@@ -136,13 +113,13 @@ torchrun --nnodes=1 --nproc_per_node=4 sample_ddp.py SDE \
     --energy-scale 0.98
 ```
 
-**Manual — guided (FID 1.98, cfg = 1.45):**
+**Manual — guided (FID 1.98, cfg = 1.5):**
 
 ```bash
 torchrun --nnodes=1 --nproc_per_node=4 sample_ddp.py SDE \
     --model SiT-XL/2 \
     --num-sampling-steps 250 \
-    --cfg-scale 1.45 \
+    --cfg-scale 1.5 \
     --sampling-method Euler \
     --diffusion-form sigma \
     --last-step Mean \
@@ -199,6 +176,25 @@ torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py SDE \
     --num-fid-samples 50000 \
     [... CNS flags ...]
 ```
+
+---
+
+## Results
+
+### Unguided ImageNet-256
+
+| Model     | Sampler    | FID ↓ | sFID ↓ | IS ↑   |
+|-----------|------------|-------|--------|--------|
+| SiT-XL/2  | ODE        | 14.39 | 10.54  | 99.32  |
+| SiT-XL/2  | SDE        | 8.26  | 6.32   | 131.65 |
+| SiT-XL/2  | **CNS (Ours)** | **6.27** | **4.73** | **147.33** |
+
+### Guided ImageNet-256 (CFG)
+
+| Model     | Sampler    | CFG  | FID ↓ | sFID ↓ |
+|-----------|------------|------|-------|--------|
+| SiT-XL/2  | SDE        | 1.5  | 2.06  | 4.49   |
+| SiT-XL/2  | **CNS (Ours)** | 1.5  | **1.98** | **4.46** |
 
 ---
 
