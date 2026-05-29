@@ -1,10 +1,10 @@
 # Colored Noise Diffusion Sampling (CNS)
 ### *A plug-and-play SDE sampler that actively exploits the spectral bias of diffusion models*
 
-**[Paper](https://arxiv.org/abs/PLACEHOLDER) | [Project Page](https://hadardavidson.github.io/CNS)**
+**[Paper][(https://arxiv.org/abs/2605.30332](http://arxiv.org/abs/2605.30332)) | [Project Page](https://hadardavidson.github.io/CNS)**
 
 > **Colored Noise Diffusion Sampling**<br>
-> [Hadar Davidson](https://hadardavidson.github.io), [Noam Issachar](https://scholar.google.com/citations?user=Lh0grhUAAAAJ), [Sagie Benaim](https://sagiebenaim.github.io)<br>
+> [Hadar Davidson](https://hadardavidson.github.io/CNS), [Noam Issachar](https://scholar.google.com/citations?user=Lh0grhUAAAAJ), [Sagie Benaim](https://sagiebenaim.github.io)<br>
 > The Hebrew University of Jerusalem
 
 ![CNS teaser](visuals/cns_teaser.png)
@@ -203,18 +203,21 @@ torchrun --nnodes=1 --nproc_per_node=N sample_ddp.py SDE \
 This codebase builds on:
 
 - **[SiT](https://github.com/willisma/SiT)** (Ma et al., ECCV 2024) — model architecture, training code, and SDE/ODE sampling infrastructure.
-- **[OpenAI guided-diffusion](https://github.com/openai/guided-diffusion)** — FID/IS/Precision/Recall evaluation suite (`evaluator.py`).
+- **[OpenAI guided-diffusion](https://github.com/openai/guided-diffusion)** — FID/sFID/IS/Precision/Recall evaluation suite (`evaluator.py`).
 
 ---
 
 ## Citation
 
 ```bibtex
-@article{davidson2025cns,
-  title   = {Colored Noise Diffusion Sampling},
-  author  = {Davidson, Hadar and Issachar, Noam and Benaim, Sagie},
-  journal = {arXiv preprint arXiv:PLACEHOLDER},
-  year    = {2025}
+@misc{davidson2026colorednoisediffusionsampling,
+      title={Colored Noise Diffusion Sampling}, 
+      author={Hadar Davidson and Noam Issachar and Sagie Benaim},
+      year={2026},
+      eprint={2605.30332},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.30332}, 
 }
 ```
 
